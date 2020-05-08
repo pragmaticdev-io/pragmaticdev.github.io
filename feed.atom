@@ -9,7 +9,70 @@
   </author>
   <icon>https://blog.pragmaticdev.io/image/brand/icon-1-1.png</icon>
   <logo>https://blog.pragmaticdev.io/image/brand/icon-2-1.png</logo>
-  <updated>2020-05-07T07:12:33Z</updated>
+  <updated>2020-05-08T09:14:05Z</updated>
   <link rel="self" type="application/atom+xml" href="https://blog.pragmaticdev.io/feed.atom" hreflang="en-us"/>
   <link rel="alternate" type="text/html" href="https://blog.pragmaticdev.io/" hreflang="en-us"/>
+  <entry>
+    <title>Hello, World!</title><author>
+      <name>Cole Mackenzie</name>
+      <uri>https://cmackenzie1.github.io</uri>
+    </author>
+    <id>https://blog.pragmaticdev.io/hello-world/</id>
+    <updated>2020-05-08T06:00:00Z</updated>
+    <published>2020-05-08T06:00:00Z</published>
+    <content type="html"><p>&quot;Hello, World!&quot;, is a well known phrase among software developers and commonly referrers to the simplest program required to display the text <code>Hello, World!</code> on the console.
+Many of us have written one, especially when picking up a new language.</p>
+<p>For Python, it is as simple as firing up a terminal, typing in <code>python3</code> (2 is dead, get over it.), and inputing the following statement, and pressing return.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Hello, World!&#34;</span>)
+Hello, World<span style="color:#960050;background-color:#1e0010">!</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>For C, a few more steps are involved, but overall its still fairly simple.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">// hello.c
+</span><span style="color:#75715e"></span>include <span style="color:#f92672">&lt;</span>stdio.h<span style="color:#f92672">&gt;</span>
+
+<span style="color:#66d9ef">int</span> main() { 
+    printf(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Then compile the source and run it.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">gcc hello.c
+./a.out
+Hello, World!
+</code></pre></td></tr></table>
+</div>
+</div><p>While the &quot;Hello, World!&quot; programs are the bare minimum that is needed to get it to run, that is all it is. <em>The bare minimum</em>. The goal of this blog is to tackle that problem.</p>
+<blockquote>
+<p>Here is a hello world example, now build me a spaceship with batteries included ;).</p>
+</blockquote>
+<p>Through a series of posts over the next little while, I will tackle this challenge of how to extend past the basic examples by providing a quality set of examples that I encounter during my day-to-day as a Software Developer. We will start with a basic hello world program and build it into an full fleged realistic application based on practical considerations.</p>
+<p>Stay tuned!</p>
+<p><a href="https://GitHub.com/cmackenzie1/"><img src="http://ForTheBadge.com/images/badges/built-by-developers.svg" alt="ForTheBadge built-by-developers"></a></p></content>
+  </entry>
 </feed>
