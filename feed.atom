@@ -9,9 +9,157 @@
   </author>
   <icon>https://blog.pragmaticdev.io/image/brand/icon-1-1.png</icon>
   <logo>https://blog.pragmaticdev.io/image/brand/icon-2-1.png</logo>
-  <updated>2020-05-08T09:14:05Z</updated>
+  <updated>2020-05-10T06:24:36Z</updated>
   <link rel="self" type="application/atom+xml" href="https://blog.pragmaticdev.io/feed.atom" hreflang="en-us"/>
   <link rel="alternate" type="text/html" href="https://blog.pragmaticdev.io/" hreflang="en-us"/>
+  <entry>
+    <title>Part 1: Project Introduction</title><author>
+      <name>Cole Mackenzie</name>
+      <uri>https://cmackenzie1.github.io</uri>
+    </author>
+    <id>https://blog.pragmaticdev.io/project-introduction/</id>
+    <updated>2020-05-09T18:00:00Z</updated>
+    <published>2020-05-09T18:00:00Z</published>
+    <content type="html"><p>As I talked about in <a href="/hello-world">my first post</a>, the goal of this blog is to build a program/app/service, whatever you want to call it, to demonstrate building a full-scale application from the requirements to production.</p>
+<h2>Requirements for the project</h2>
+<p>First, before we begin any programming, we need to define what kind of program we are going to build. Given that most of my professional experience is in API Development and Data Engineering, I wanted something that will evolve into those two areas. At a high level, these are some of the requirements.</p>
+<ul>
+<li>Must be able to interact with the service through a RESTful API.</li>
+<li>It must be extendable to later include analytics and data processing.</li>
+<li>As stated before, the project also needs to be realistic. We want to build something that people can use.</li>
+</ul>
+<p>Now, given those requirements for the project I have decided that we will build a URL Shortening Service, <code>UnTidy.cc</code>.</p>
+<h2>What is URL Shortening?</h2>
+<p><img src="/image/untidy/simple.png" alt="Simple Diagram"></p>
+<p>URL Shortening is the process of taking long URL's and converting them into something typically shorter than the original URL that points to the same resource. A few popular ones that already exist are <a href="https://tinyurl.com">TinyURL</a> and <a href="https://bit.ly">Bit.ly</a>.</p>
+<p>For example, we can take</p>
+<blockquote>
+<p><a href="https://example.com/post/some-really-long-url/with-a-bunch-of-characters/123ASfsda3asdq321fhreyhjk">https://example.com/post/some-really-long-url/with-a-bunch-of-characters/123ASfsda3asdq321fhreyhjk</a></p>
+</blockquote>
+<p>And turn it into something much more manageable</p>
+<blockquote>
+<p><a href="https://untidy.cc/Nzc4N2R">https://untidy.cc/Nzc4N2R</a></p>
+</blockquote>
+<p>These shorter URLs can then be shared in emails, SMS, tweets, or even verbally.</p>
+<h2>System Requirements</h2>
+<p>For the most part I will be taking much of <a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2ygV4E81AR">this design</a>, and modifying it to suit our needs.</p>
+<h3>Functional Requirements</h3>
+<p>These describe how the core interactions with our service should behave.</p>
+<ol>
+<li>Given a URL, our service should generate a shorter and unique alias. This needs to short enough that you can tell someone it verbally.</li>
+<li>Accessing the short URL should redirect the user to the original link.</li>
+<li>Generate links should expire after a default timespan. This value should also be customizable.</li>
+<li>Our service should also be accessible through REST APIs by other services.</li>
+</ol>
+<h3>Non-Functional Requirements</h3>
+<p>These are additional requirements that are not part of the core functionality of the service but are realistic expectations for the service.</p>
+<ol>
+<li>The system should be highly available. This is required because, if our service is down, all the URL redirections will start failing.</li>
+<li>URL redirection should happen in real-time with minimal latency.</li>
+<li>Shortened links should not be guessable (not predictable).</li>
+</ol>
+<h3>Extended Requirements</h3>
+<p>For now, I will just broadly introduce one of our extended requirements that we will further define later on.</p>
+<ol>
+<li>Analytics; e.g., how many times has redirection happened?. This is part of our extension into the data engineering realm.</li>
+</ol>
+<h2>Language(s), Framework(s), and Tools</h2>
+<p>This project I will adopt the JVM Ecosystem (Java and Kotlin), and the <a href="https://spring.io/projects/spring-boot">Spring Boot Framework</a>. The reasons for these choices are:</p>
+<ol>
+<li>Large and powerful communities.</li>
+<li>Java is largely considered the &quot;Enterprise Language&quot; and &quot;No one ever got fired for choosing Java&quot;.</li>
+<li>Batteries included. Spring has a well-supported ecosystem and provides a lot of functionality out of the box for building production-grade services.</li>
+</ol>
+<h3>Tools at a glance</h3>
+<ul>
+<li>Java / Kotlin</li>
+<li><a href="https://spring.io/projects/spring-boot">Spring Boot Framework</a></li>
+<li><a href="https://travis-ci.org/">TravisCI</a></li>
+<li><a href="https://github.com/">GitHub</a></li>
+</ul>
+<h2>Database Design</h2>
+<p>As stated in the <a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2ygV4E81AR">original design</a> we know the following:</p>
+<ol>
+<li>We need to be able to store up to billions of records.</li>
+<li>Each record is relatively small (&lt; 1KB ).</li>
+<li>There are very few relationships between objects. Currently, we only need to store which user created the URL.</li>
+</ol>
+<p>Knowing this information, we can pick a NoSQL database for our storage. For this I have chosen <a href="https://cassandra.apache.org/">Apache Cassandra</a>. The purpose of choosing a NoSQL database is the need to store up to billions of entries and to be able to scale it horizontally. We could have also chosen several other types of NoSQL stores such as <a href="https://aws.amazon.com/dynamodb/">DynammoDB</a>, <a href="https://redis.io/">Redis</a>, or <a href="https://www.mongodb.com/">MongoDB</a> but I have opted for Cassandra as the primary store. In future posts, we may see Redis (or Memcached) make an appearance for caching systems.</p>
+<h3>Database Schema</h3>
+<p><img src="/image/untidy/database-schema.png" alt="Database Schema"></p>
+<p>Since we are using Cassandra, data is commonly denormalized to be able to answer queries with the minimum number of reads. Assuming most of our traffic is just looking up the key and returning the original URL, we do not need the complete user information to return the result to the user. Thus, in the event where we do need to grab the complete user information for a given key, we can simply perform an additional query using the <code>user_id</code>. If you are interested in learning more about why data is denormalized in Cassandra, check out this <a href="https://www.datastax.com/blog/2015/02/basic-rules-cassandra-data-modeling">blog post</a>.</p>
+<h3>System Design and Algorithm</h3>
+<p>Last but not least, we need to define how we will generate a short URL given a URL. We will be implementing the algorithm in two phases.</p>
+<h4>Phase 1: Encoding the Actual URL</h4>
+<p><img src="/image/untidy/phase1.png" alt="phase1"></p>
+<p>To simplify things in the beginning we will start by encoding provided URL by calculating its unique hash using <code>md5</code> or <code>SHA256</code> and then encoding its hash value using a custom encoding similar to <code>base64</code>. We will use the alphabet of <code>&quot;23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ&quot;</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, 56 characters in total, to avoid confusing similar terms such as <code>0Ol1ol</code> and the URL path separator of <code>/</code>, and the <code>+</code> symbol since it is commonly used as a space separator in human-friendly URLs.</p>
+<p>Now that we have defined the alphabet for our lookup keys, we need to decide on how many characters we want to use to represent the value.</p>
+<table>
+<thead>
+<tr>
+<th>No. of characters</th>
+<th align="right">Total unique combinations (56**n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td align="right"><code>56</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td align="right"><code>3,136</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td align="right"><code>175,616</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td align="right"><code>9,834,496</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td align="right"><code>550,731,776</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td align="right"><code>30,840,979,456</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td align="right"><code>1,727,094,849,536</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td align="right"><code>96,717,311,574,016</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td align="right"><code>5,416,169,448,144,896</code></td>
+</tr>
+</tbody>
+</table>
+<p>Using this table and <a href="https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two">&quot;The Magical Number Seven, Plus or Minus Two&quot;</a>, we can settle comfortably on using 6-8 characters for up to a total of almost ~97 trillion combinations. Assuming the number of combinations was our only limiting factor, we could sustain generating ~307,000 URLs/sec for the next 2 years! We can of course also gradually ramp up the number of character from 6 to 8 over the lifetime of the service, so early adopters will end up with slightly shorter URLs until we run out.</p>
+<h3>Phase 2: Key Generation Service</h3>
+<p><img src="/image/untidy/key-gen-service.png" alt="keygen-service"></p>
+<p>Eventually after many URLs have been hashed, stored, and this service undoubtedly becomes more popular, the frequency of collision for generating our hashes will also increase. This increase in collisions will increase the latency to respond to each request and put more strain on our database by continually querying to see if the generated key has already been allocated to a URL. We will also begin to encounter issues with ensuring we have a lock on the key before continuing.</p>
+<p>To deal with this, we will separate the hash/key management into its a separate service. This way the service can continually generate new keys in the background whenever we begin running low and it will be able to provide each instance of our service with a local cache of keys that are known to be not in use. This will help to eliminate the latency caused by collisions and decrease our response time since we will no longer need to generate the key ourselves. One caveat though is if an instance of the shortening service dies, any keys that were assigned to it will be considered dead as well. In the future we can also look into reclaiming these &quot;lost&quot; keys as well.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Gm2x6CVIXiE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Let us get started!</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://stackoverflow.com/a/1119769">https://stackoverflow.com/a/1119769</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section></content>
+  </entry>
   <entry>
     <title>Hello, World!</title><author>
       <name>Cole Mackenzie</name>
@@ -20,9 +168,9 @@
     <id>https://blog.pragmaticdev.io/hello-world/</id>
     <updated>2020-05-08T06:00:00Z</updated>
     <published>2020-05-08T06:00:00Z</published>
-    <content type="html"><p>&quot;Hello, World!&quot;, is a well known phrase among software developers and commonly referrers to the simplest program required to display the text <code>Hello, World!</code> on the console.
+    <content type="html"><p>&quot;Hello, World!&quot;, is a well-known phrase among software developers and commonly referrers to the simplest program required to display the text <code>Hello, World!</code> on the console.
 Many of us have written one, especially when picking up a new language.</p>
-<p>For Python, it is as simple as firing up a terminal, typing in <code>python3</code> (2 is dead, get over it.), and inputing the following statement, and pressing return.</p>
+<p>For Python, it is as simple as firing up a terminal, typing in <code>python3</code> (2 is dead, get over it.), and inputting the following statement, and pressing return.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -33,7 +181,7 @@ Many of us have written one, especially when picking up a new language.</p>
 Hello, World<span style="color:#960050;background-color:#1e0010">!</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>For C, a few more steps are involved, but overall its still fairly simple.</p>
+</div><p>For C, a few more steps are involved, but overall it is still fairly simple.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -71,7 +219,7 @@ Hello, World!
 <blockquote>
 <p>Here is a hello world example, now build me a spaceship with batteries included ;).</p>
 </blockquote>
-<p>Through a series of posts over the next little while, I will tackle this challenge of how to extend past the basic examples by providing a quality set of examples that I encounter during my day-to-day as a Software Developer. We will start with a basic hello world program and build it into an full fleged realistic application based on practical considerations.</p>
+<p>Through a series of posts over the next little while, I will tackle this challenge of how to extend past the basic examples by providing a quality set of examples that I encounter during my day-to-day as a Software Developer. We will start with a basic hello world program and build it into a full fledged realistic application based on practical considerations.</p>
 <p>Stay tuned!</p>
 <p><a href="https://GitHub.com/cmackenzie1/"><img src="http://ForTheBadge.com/images/badges/built-by-developers.svg" alt="ForTheBadge built-by-developers"></a></p></content>
   </entry>

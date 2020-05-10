@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="noodp,noydir">
+  <meta name="pinterest" content="nopin">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/image/brand/favicon.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/image/brand/icon-1-1.png">
+  <link rel="canonical" href="https://blog.pragmaticdev.io/project-introduction/">
+  
+<link rel="preload" as="style" href="/bundle.css?v=1589091876" media="all">
+<link rel="stylesheet" href="/bundle.css?v=1589091876" media="all">
+
+<link rel="preload" as="image" href="/image/post/sticky-notes.jpg">
+
+
+<title>Part 1: Project Introduction : PragmaticDev</title>
+
+<meta property="og:title" content="Part 1: Project Introduction">
+<meta property="og:site_name" content="PragmaticDev">
+<meta property="og:url" content="https://blog.pragmaticdev.io/project-introduction/">
+<link rel="image_src" href="https://blog.pragmaticdev.io/image/post/sticky-notes.jpg">
+<meta property="og:image" content="https://blog.pragmaticdev.io/image/post/sticky-notes.jpg">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_us">
+<meta property="og:description" content="As I talked about in my first post, the goal of this blog is to build a program/app/service, whatever you want to call it, to demonstrate building a full-scale application from the requirements to production. Requirements for the project First, before we begin any programming, we need to define what kind of program we are going to build.">
+<meta name="description" content="As I talked about in my first post, the goal of this blog is to build a program/app/service, whatever you want to call it, to demonstrate building a full-scale application from the requirements to production. Requirements for the project First, before we begin any programming, we need to define what kind of program we are going to build.">
+<meta property="og:updated_time" content="2020-05-09T18:00:00Z">
+<meta property="fb:app_id" content="">
+<meta name="author" content="Cole Mackenzie">
+<meta property="article:author" content="https://cmackenzie1.github.io">
+<meta property="article:published_time" content="2020-05-09T18:00:00Z">
+<meta property="article:modified_time" content="2020-05-09T18:00:00Z">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Part 1: Project Introduction",
+  "alternativeHeadline": "Overview of the project, a URL shortening service",
+  "url": "https://blog.pragmaticdev.io/project-introduction/",
+  "image": "https://blog.pragmaticdev.io/image/post/sticky-notes.jpg",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.pragmaticdev.io/project-introduction/"
+  },
+  "description": "As I talked about in my first post, the goal of this blog is to build a program/app/service, whatever you want to call it, to demonstrate building a full-scale application from the requirements to production. Requirements for the project First, before we begin any programming, we need to define what kind of program we are going to build.",
+  "author": {
+    "@type": "Person",
+    "name": "Cole Mackenzie"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "PragmaticDev",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.pragmaticdev.io/image/brand/icon-1-1.png"
+    }
+  },
+  "datePublished": "2020-05-09T18:00:00Z",
+  "dateModified": "2020-05-09T18:00:00Z",
+  "articleBody": "\u003cp\u003eAs I talked about in \u003ca href=\"/hello-world\"\u003emy first post\u003c/a\u003e, the goal of this blog is to build a program/app/service, whatever you want to call it, to demonstrate building a full-scale application from the requirements to production.\u003c/p\u003e\n\u003ch2\u003eRequirements for the project\u003c/h2\u003e\n\u003cp\u003eFirst, before we begin any programming, we need to define what kind of program we are going to build. Given that most of my professional experience is in API Development and Data Engineering, I wanted something that will evolve into those two areas. At a high level, these are some of the requirements.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eMust be able to interact with the service through a RESTful API.\u003c/li\u003e\n\u003cli\u003eIt must be extendable to later include analytics and data processing.\u003c/li\u003e\n\u003cli\u003eAs stated before, the project also needs to be realistic. We want to build something that people can use.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eNow, given those requirements for the project I have decided that we will build a URL Shortening Service, \u003ccode\u003eUnTidy.cc\u003c/code\u003e.\u003c/p\u003e\n\u003ch2\u003eWhat is URL Shortening?\u003c/h2\u003e\n\u003cp\u003e\u003cimg src=\"/image/untidy/simple.png\" alt=\"Simple Diagram\"\u003e\u003c/p\u003e\n\u003cp\u003eURL Shortening is the process of taking long URL's and converting them into something typically shorter than the original URL that points to the same resource. A few popular ones that already exist are \u003ca href=\"https://tinyurl.com\"\u003eTinyURL\u003c/a\u003e and \u003ca href=\"https://bit.ly\"\u003eBit.ly\u003c/a\u003e.\u003c/p\u003e\n\u003cp\u003eFor example, we can take\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003e\u003ca href=\"https://example.com/post/some-really-long-url/with-a-bunch-of-characters/123ASfsda3asdq321fhreyhjk\"\u003ehttps://example.com/post/some-really-long-url/with-a-bunch-of-characters/123ASfsda3asdq321fhreyhjk\u003c/a\u003e\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003eAnd turn it into something much more manageable\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003e\u003ca href=\"https://untidy.cc/Nzc4N2R\"\u003ehttps://untidy.cc/Nzc4N2R\u003c/a\u003e\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003eThese shorter URLs can then be shared in emails, SMS, tweets, or even verbally.\u003c/p\u003e\n\u003ch2\u003eSystem Requirements\u003c/h2\u003e\n\u003cp\u003eFor the most part I will be taking much of \u003ca href=\"https://www.educative.io/courses/grokking-the-system-design-interview/m2ygV4E81AR\"\u003ethis design\u003c/a\u003e, and modifying it to suit our needs.\u003c/p\u003e\n\u003ch3\u003eFunctional Requirements\u003c/h3\u003e\n\u003cp\u003eThese describe how the core interactions with our service should behave.\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eGiven a URL, our service should generate a shorter and unique alias. This needs to short enough that you can tell someone it verbally.\u003c/li\u003e\n\u003cli\u003eAccessing the short URL should redirect the user to the original link.\u003c/li\u003e\n\u003cli\u003eGenerate links should expire after a default timespan. This value should also be customizable.\u003c/li\u003e\n\u003cli\u003eOur service should also be accessible through REST APIs by other services.\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3\u003eNon-Functional Requirements\u003c/h3\u003e\n\u003cp\u003eThese are additional requirements that are not part of the core functionality of the service but are realistic expectations for the service.\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eThe system should be highly available. This is required because, if our service is down, all the URL redirections will start failing.\u003c/li\u003e\n\u003cli\u003eURL redirection should happen in real-time with minimal latency.\u003c/li\u003e\n\u003cli\u003eShortened links should not be guessable (not predictable).\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3\u003eExtended Requirements\u003c/h3\u003e\n\u003cp\u003eFor now, I will just broadly introduce one of our extended requirements that we will further define later on.\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eAnalytics; e.g., how many times has redirection happened?. This is part of our extension into the data engineering realm.\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2\u003eLanguage(s), Framework(s), and Tools\u003c/h2\u003e\n\u003cp\u003eThis project I will adopt the JVM Ecosystem (Java and Kotlin), and the \u003ca href=\"https://spring.io/projects/spring-boot\"\u003eSpring Boot Framework\u003c/a\u003e. The reasons for these choices are:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eLarge and powerful communities.\u003c/li\u003e\n\u003cli\u003eJava is largely considered the \u0026quot;Enterprise Language\u0026quot; and \u0026quot;No one ever got fired for choosing Java\u0026quot;.\u003c/li\u003e\n\u003cli\u003eBatteries included. Spring has a well-supported ecosystem and provides a lot of functionality out of the box for building production-grade services.\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3\u003eTools at a glance\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eJava / Kotlin\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://spring.io/projects/spring-boot\"\u003eSpring Boot Framework\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://travis-ci.org/\"\u003eTravisCI\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://github.com/\"\u003eGitHub\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eDatabase Design\u003c/h2\u003e\n\u003cp\u003eAs stated in the \u003ca href=\"https://www.educative.io/courses/grokking-the-system-design-interview/m2ygV4E81AR\"\u003eoriginal design\u003c/a\u003e we know the following:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eWe need to be able to store up to billions of records.\u003c/li\u003e\n\u003cli\u003eEach record is relatively small (\u0026lt; 1KB ).\u003c/li\u003e\n\u003cli\u003eThere are very few relationships between objects. Currently, we only need to store which user created the URL.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eKnowing this information, we can pick a NoSQL database for our storage. For this I have chosen \u003ca href=\"https://cassandra.apache.org/\"\u003eApache Cassandra\u003c/a\u003e. The purpose of choosing a NoSQL database is the need to store up to billions of entries and to be able to scale it horizontally. We could have also chosen several other types of NoSQL stores such as \u003ca href=\"https://aws.amazon.com/dynamodb/\"\u003eDynammoDB\u003c/a\u003e, \u003ca href=\"https://redis.io/\"\u003eRedis\u003c/a\u003e, or \u003ca href=\"https://www.mongodb.com/\"\u003eMongoDB\u003c/a\u003e but I have opted for Cassandra as the primary store. In future posts, we may see Redis (or Memcached) make an appearance for caching systems.\u003c/p\u003e\n\u003ch3\u003eDatabase Schema\u003c/h3\u003e\n\u003cp\u003e\u003cimg src=\"/image/untidy/database-schema.png\" alt=\"Database Schema\"\u003e\u003c/p\u003e\n\u003cp\u003eSince we are using Cassandra, data is commonly denormalized to be able to answer queries with the minimum number of reads. Assuming most of our traffic is just looking up the key and returning the original URL, we do not need the complete user information to return the result to the user. Thus, in the event where we do need to grab the complete user information for a given key, we can simply perform an additional query using the \u003ccode\u003euser_id\u003c/code\u003e. If you are interested in learning more about why data is denormalized in Cassandra, check out this \u003ca href=\"https://www.datastax.com/blog/2015/02/basic-rules-cassandra-data-modeling\"\u003eblog post\u003c/a\u003e.\u003c/p\u003e\n\u003ch3\u003eSystem Design and Algorithm\u003c/h3\u003e\n\u003cp\u003eLast but not least, we need to define how we will generate a short URL given a URL. We will be implementing the algorithm in two phases.\u003c/p\u003e\n\u003ch4\u003ePhase 1: Encoding the Actual URL\u003c/h4\u003e\n\u003cp\u003e\u003cimg src=\"/image/untidy/phase1.png\" alt=\"phase1\"\u003e\u003c/p\u003e\n\u003cp\u003eTo simplify things in the beginning we will start by encoding provided URL by calculating its unique hash using \u003ccode\u003emd5\u003c/code\u003e or \u003ccode\u003eSHA256\u003c/code\u003e and then encoding its hash value using a custom encoding similar to \u003ccode\u003ebase64\u003c/code\u003e. We will use the alphabet of \u003ccode\u003e\u0026quot;23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ\u0026quot;\u003c/code\u003e\u003csup id=\"fnref:1\"\u003e\u003ca href=\"#fn:1\" class=\"footnote-ref\" role=\"doc-noteref\"\u003e1\u003c/a\u003e\u003c/sup\u003e, 56 characters in total, to avoid confusing similar terms such as \u003ccode\u003e0Ol1ol\u003c/code\u003e and the URL path separator of \u003ccode\u003e/\u003c/code\u003e, and the \u003ccode\u003e+\u003c/code\u003e symbol since it is commonly used as a space separator in human-friendly URLs.\u003c/p\u003e\n\u003cp\u003eNow that we have defined the alphabet for our lookup keys, we need to decide on how many characters we want to use to represent the value.\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eNo. of characters\u003c/th\u003e\n\u003cth align=\"right\"\u003eTotal unique combinations (56**n)\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003ccode\u003e56\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003ccode\u003e3,136\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e3\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003ccode\u003e175,616\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e4\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003ccode\u003e9,834,496\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e5\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003ccode\u003e550,731,776\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e6\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003ccode\u003e30,840,979,456\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e7\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003ccode\u003e1,727,094,849,536\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e8\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003ccode\u003e96,717,311,574,016\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e9\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003ccode\u003e5,416,169,448,144,896\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003eUsing this table and \u003ca href=\"https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two\"\u003e\u0026quot;The Magical Number Seven, Plus or Minus Two\u0026quot;\u003c/a\u003e, we can settle comfortably on using 6-8 characters for up to a total of almost ~97 trillion combinations. Assuming the number of combinations was our only limiting factor, we could sustain generating ~307,000 URLs/sec for the next 2 years! We can of course also gradually ramp up the number of character from 6 to 8 over the lifetime of the service, so early adopters will end up with slightly shorter URLs until we run out.\u003c/p\u003e\n\u003ch3\u003ePhase 2: Key Generation Service\u003c/h3\u003e\n\u003cp\u003e\u003cimg src=\"/image/untidy/key-gen-service.png\" alt=\"keygen-service\"\u003e\u003c/p\u003e\n\u003cp\u003eEventually after many URLs have been hashed, stored, and this service undoubtedly becomes more popular, the frequency of collision for generating our hashes will also increase. This increase in collisions will increase the latency to respond to each request and put more strain on our database by continually querying to see if the generated key has already been allocated to a URL. We will also begin to encounter issues with ensuring we have a lock on the key before continuing.\u003c/p\u003e\n\u003cp\u003eTo deal with this, we will separate the hash/key management into its a separate service. This way the service can continually generate new keys in the background whenever we begin running low and it will be able to provide each instance of our service with a local cache of keys that are known to be not in use. This will help to eliminate the latency caused by collisions and decrease our response time since we will no longer need to generate the key ourselves. One caveat though is if an instance of the shortening service dies, any keys that were assigned to it will be considered dead as well. In the future we can also look into reclaiming these \u0026quot;lost\u0026quot; keys as well.\u003c/p\u003e\n\n\u003cdiv style=\"position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\"\u003e\n  \u003ciframe src=\"https://www.youtube.com/embed/Gm2x6CVIXiE\" style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\" allowfullscreen title=\"YouTube Video\"\u003e\u003c/iframe\u003e\n\u003c/div\u003e\n\n\u003cp\u003eLet us get started!\u003c/p\u003e\n\u003csection class=\"footnotes\" role=\"doc-endnotes\"\u003e\n\u003chr\u003e\n\u003col\u003e\n\u003cli id=\"fn:1\" role=\"doc-endnote\"\u003e\n\u003cp\u003e\u003ca href=\"https://stackoverflow.com/a/1119769\"\u003ehttps://stackoverflow.com/a/1119769\u003c/a\u003e \u003ca href=\"#fnref:1\" class=\"footnote-backref\" role=\"doc-backlink\"\u003e\u0026#x21a9;\u0026#xfe0e;\u003c/a\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003c/section\u003e"
+}
+</script>
+
+<link rel="preload" as="script" href="/bundle.js?v=1589091876">
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://stats.g.doubleclick.net">
+<link rel="preconnect" href="https://www.googleadservices.com">
+<link rel="preload" as="script" href="https://www.googletagmanager.com/gtag/js?id=UA-165842118-1">
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-165842118-1"></script>
+<script>
+  window.dataLayer=window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','UA-165842118-1');
+</script>
+
+</head>
+<body>
+  <header id="nav" class="header">
+  <div class="ax-l-i">
+    <div class="ax-logo">
+      <a class="block" href="/" title="PragmaticDev"><span class="font-semibold text-raven-900">PragmaticDev</span></a>
+    </div>
+    <div class="ax-user">
+      <a class="p-2 w-7 h-7 block text-raven-500 hover:text-gray-800 focus:text-gray-800 focus:outline-none" target="_blank" rel="noopener nofollow" href="https://www.google.com/search?q=site:blog.pragmaticdev.io">
+        <svg class="fill-current" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M2.67 12.804c0-5.6 4.544-10.134 10.133-10.134s10.134 4.544 10.134 10.134-4.544 10.133-10.134 10.133S2.67 18.393 2.67 12.804zm28.943 16.923l-8.868-8.868c4.287-5.3 3.68-13.012-1.378-17.57S8.564-1.066 3.75 3.75s-5.017 12.558-.46 17.618 12.28 5.665 17.57 1.378l8.868 8.868a1.33 1.33 0 0 0 2.231-.597c.123-.46-.008-.952-.345-1.29h0z"/></svg>
+
+      </a>
+      <a class="p-2 block text-sm leading-none text-raven-500 hover:text-gray-800 focus:text-gray-800 focus:outline-none" href="/posts/">
+        Posts
+      </a>
+    </div>
+  </div>
+
+  
+</header>
+
+  <main>
+<div class="default-single">
+  <div class="ax-header ax-l-o">
+    <div class="ax-l-i">
+      <h1 class="post-title font-content-title font-normal leading-tight tracking-default text-40">Part 1: Project Introduction</h1>
+      <p class="post-subtitle font-content-sans font-light text-xl text-raven-500 mt-3">Overview of the project, a URL shortening service</p>
+
+      <div class="ax-meta flex items-center mt-5">
+        <div class="flex-grow min-w-0">
+          <div class="flex items-center">
+  <div class="flex-shrink-0">
+    <img
+    class="w-12 h-12 sm:w-14 sm:h-14 object-cover p-05 rounded-full border border-blue-300"
+    src="/image/author/cole.jpg"
+    alt="Cole Mackenzie">
+  </div>
+  <div class="flex-shrink-0 ml-2 leading-tight font-content-sans">
+    <a class="block text-sm text-raven-800 hover:text-raven-900 hover:underline focus:underline" target="_blank" rel="noopener nofollow" title="Cole Mackenzie" href="https://cmackenzie1.github.io">Cole Mackenzie</a>
+    <time class="text-sm text-raven-500" datetime="2020-05-09T18:00:00Z">May 9, 2020 11:00AM</time>
+  </div>
+</div>
+
+        </div>
+        <div>
+          <div class="flex items-center">
+  <a class="flex-shrink-0 block text-raven-800 hover:text-raven-900" target="_blank" rel="noopener nofollow" title="Share on Twitter" href="https://twitter.com/intent/tweet?text=Part%201%3a%20Project%20Introduction%20by%20%40Cole_Mackenzie%20https%3a%2f%2fblog.pragmaticdev.io%2fproject-introduction%2f"><svg class="w-6 h-6 fill-current" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M32 6.078c-1.2.522-2.458.868-3.78 1.036 1.36-.812 2.398-2.088 2.886-3.626a13.11 13.11 0 0 1-4.16 1.588C25.742 3.794 24.026 3 22.154 3a6.56 6.56 0 0 0-6.556 6.562c0 .52.044 1.02.152 1.496-5.454-.266-10.28-2.88-13.522-6.862-.566.982-.898 2.106-.898 3.316a6.57 6.57 0 0 0 2.914 5.452 6.48 6.48 0 0 1-2.964-.808v.072c0 3.188 2.274 5.836 5.256 6.446-.534.146-1.116.216-1.72.216-.42 0-.844-.024-1.242-.112.85 2.598 3.262 4.508 6.13 4.57a13.18 13.18 0 0 1-8.134 2.798c-.538 0-1.054-.024-1.57-.1C2.906 27.93 6.35 29 10.064 29c12.072 0 18.672-10 18.672-18.668 0-.3-.01-.57-.024-.848C30.014 8.56 31.108 7.406 32 6.078z"/></svg>
+</a>
+  <a class="ml-3 flex-shrink-0 block text-raven-800 hover:text-raven-900" target="_blank" rel="noopener nofollow" title="Share on Facebook" href="https://www.facebook.com/dialog/share?app_id=&display=page&href=https%3a%2f%2fblog.pragmaticdev.io%2fproject-introduction%2f"><svg class="w-6 h-6 fill-current" viewBox="-7 -3.5 39 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M30.234 0H1.765C.8.001 0 .79 0 1.766v28.47C.001 31.2.79 32 1.766 32h15.328V19.625h-4.156V14.78h4.156v-3.564c0-4.134 2.523-6.384 6.21-6.384 1.766 0 3.284.13 3.726.2v4.32h-2.543c-2.006 0-2.394.953-2.394 2.352v3.085h4.797l-.625 4.844h-4.172V32h8.14C31.21 32 32 31.2 32 30.234V1.765C32 .8 31.21 0 30.234 0z"/></svg>
+</a>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ax-feature ax-l-o">
+    <div class="ax-l-i">
+
+<figure>
+<img
+class="mb-2 mx-auto leading-none shadow-xl"
+src="/image/post/sticky-notes.jpg"
+alt="Part 1: Project Introduction">
+</figure>
+
+    </div>
+  </div><div class="ax-content ax-l-o">
+    <div class="ax-l-i">
+      <article class="cdata">
+<p>As I talked about in <a href="/hello-world">my first post</a>, the goal of this blog is to build a program/app/service, whatever you want to call it, to demonstrate building a full-scale application from the requirements to production.</p>
+<h2>Requirements for the project</h2>
+<p>First, before we begin any programming, we need to define what kind of program we are going to build. Given that most of my professional experience is in API Development and Data Engineering, I wanted something that will evolve into those two areas. At a high level, these are some of the requirements.</p>
+<ul>
+<li>Must be able to interact with the service through a RESTful API.</li>
+<li>It must be extendable to later include analytics and data processing.</li>
+<li>As stated before, the project also needs to be realistic. We want to build something that people can use.</li>
+</ul>
+<p>Now, given those requirements for the project I have decided that we will build a URL Shortening Service, <code>UnTidy.cc</code>.</p>
+<h2>What is URL Shortening?</h2>
+<p><img src="/image/untidy/simple.png" alt="Simple Diagram"></p>
+<p>URL Shortening is the process of taking long URL's and converting them into something typically shorter than the original URL that points to the same resource. A few popular ones that already exist are <a href="https://tinyurl.com">TinyURL</a> and <a href="https://bit.ly">Bit.ly</a>.</p>
+<p>For example, we can take</p>
+<blockquote>
+<p><a href="https://example.com/post/some-really-long-url/with-a-bunch-of-characters/123ASfsda3asdq321fhreyhjk">https://example.com/post/some-really-long-url/with-a-bunch-of-characters/123ASfsda3asdq321fhreyhjk</a></p>
+</blockquote>
+<p>And turn it into something much more manageable</p>
+<blockquote>
+<p><a href="https://untidy.cc/Nzc4N2R">https://untidy.cc/Nzc4N2R</a></p>
+</blockquote>
+<p>These shorter URLs can then be shared in emails, SMS, tweets, or even verbally.</p>
+<h2>System Requirements</h2>
+<p>For the most part I will be taking much of <a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2ygV4E81AR">this design</a>, and modifying it to suit our needs.</p>
+<h3>Functional Requirements</h3>
+<p>These describe how the core interactions with our service should behave.</p>
+<ol>
+<li>Given a URL, our service should generate a shorter and unique alias. This needs to short enough that you can tell someone it verbally.</li>
+<li>Accessing the short URL should redirect the user to the original link.</li>
+<li>Generate links should expire after a default timespan. This value should also be customizable.</li>
+<li>Our service should also be accessible through REST APIs by other services.</li>
+</ol>
+<h3>Non-Functional Requirements</h3>
+<p>These are additional requirements that are not part of the core functionality of the service but are realistic expectations for the service.</p>
+<ol>
+<li>The system should be highly available. This is required because, if our service is down, all the URL redirections will start failing.</li>
+<li>URL redirection should happen in real-time with minimal latency.</li>
+<li>Shortened links should not be guessable (not predictable).</li>
+</ol>
+<h3>Extended Requirements</h3>
+<p>For now, I will just broadly introduce one of our extended requirements that we will further define later on.</p>
+<ol>
+<li>Analytics; e.g., how many times has redirection happened?. This is part of our extension into the data engineering realm.</li>
+</ol>
+<h2>Language(s), Framework(s), and Tools</h2>
+<p>This project I will adopt the JVM Ecosystem (Java and Kotlin), and the <a href="https://spring.io/projects/spring-boot">Spring Boot Framework</a>. The reasons for these choices are:</p>
+<ol>
+<li>Large and powerful communities.</li>
+<li>Java is largely considered the &quot;Enterprise Language&quot; and &quot;No one ever got fired for choosing Java&quot;.</li>
+<li>Batteries included. Spring has a well-supported ecosystem and provides a lot of functionality out of the box for building production-grade services.</li>
+</ol>
+<h3>Tools at a glance</h3>
+<ul>
+<li>Java / Kotlin</li>
+<li><a href="https://spring.io/projects/spring-boot">Spring Boot Framework</a></li>
+<li><a href="https://travis-ci.org/">TravisCI</a></li>
+<li><a href="https://github.com/">GitHub</a></li>
+</ul>
+<h2>Database Design</h2>
+<p>As stated in the <a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2ygV4E81AR">original design</a> we know the following:</p>
+<ol>
+<li>We need to be able to store up to billions of records.</li>
+<li>Each record is relatively small (&lt; 1KB ).</li>
+<li>There are very few relationships between objects. Currently, we only need to store which user created the URL.</li>
+</ol>
+<p>Knowing this information, we can pick a NoSQL database for our storage. For this I have chosen <a href="https://cassandra.apache.org/">Apache Cassandra</a>. The purpose of choosing a NoSQL database is the need to store up to billions of entries and to be able to scale it horizontally. We could have also chosen several other types of NoSQL stores such as <a href="https://aws.amazon.com/dynamodb/">DynammoDB</a>, <a href="https://redis.io/">Redis</a>, or <a href="https://www.mongodb.com/">MongoDB</a> but I have opted for Cassandra as the primary store. In future posts, we may see Redis (or Memcached) make an appearance for caching systems.</p>
+<h3>Database Schema</h3>
+<p><img src="/image/untidy/database-schema.png" alt="Database Schema"></p>
+<p>Since we are using Cassandra, data is commonly denormalized to be able to answer queries with the minimum number of reads. Assuming most of our traffic is just looking up the key and returning the original URL, we do not need the complete user information to return the result to the user. Thus, in the event where we do need to grab the complete user information for a given key, we can simply perform an additional query using the <code>user_id</code>. If you are interested in learning more about why data is denormalized in Cassandra, check out this <a href="https://www.datastax.com/blog/2015/02/basic-rules-cassandra-data-modeling">blog post</a>.</p>
+<h3>System Design and Algorithm</h3>
+<p>Last but not least, we need to define how we will generate a short URL given a URL. We will be implementing the algorithm in two phases.</p>
+<h4>Phase 1: Encoding the Actual URL</h4>
+<p><img src="/image/untidy/phase1.png" alt="phase1"></p>
+<p>To simplify things in the beginning we will start by encoding provided URL by calculating its unique hash using <code>md5</code> or <code>SHA256</code> and then encoding its hash value using a custom encoding similar to <code>base64</code>. We will use the alphabet of <code>&quot;23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ&quot;</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, 56 characters in total, to avoid confusing similar terms such as <code>0Ol1ol</code> and the URL path separator of <code>/</code>, and the <code>+</code> symbol since it is commonly used as a space separator in human-friendly URLs.</p>
+<p>Now that we have defined the alphabet for our lookup keys, we need to decide on how many characters we want to use to represent the value.</p>
+<table>
+<thead>
+<tr>
+<th>No. of characters</th>
+<th align="right">Total unique combinations (56**n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td align="right"><code>56</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td align="right"><code>3,136</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td align="right"><code>175,616</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td align="right"><code>9,834,496</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td align="right"><code>550,731,776</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td align="right"><code>30,840,979,456</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td align="right"><code>1,727,094,849,536</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td align="right"><code>96,717,311,574,016</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td align="right"><code>5,416,169,448,144,896</code></td>
+</tr>
+</tbody>
+</table>
+<p>Using this table and <a href="https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two">&quot;The Magical Number Seven, Plus or Minus Two&quot;</a>, we can settle comfortably on using 6-8 characters for up to a total of almost ~97 trillion combinations. Assuming the number of combinations was our only limiting factor, we could sustain generating ~307,000 URLs/sec for the next 2 years! We can of course also gradually ramp up the number of character from 6 to 8 over the lifetime of the service, so early adopters will end up with slightly shorter URLs until we run out.</p>
+<h3>Phase 2: Key Generation Service</h3>
+<p><img src="/image/untidy/key-gen-service.png" alt="keygen-service"></p>
+<p>Eventually after many URLs have been hashed, stored, and this service undoubtedly becomes more popular, the frequency of collision for generating our hashes will also increase. This increase in collisions will increase the latency to respond to each request and put more strain on our database by continually querying to see if the generated key has already been allocated to a URL. We will also begin to encounter issues with ensuring we have a lock on the key before continuing.</p>
+<p>To deal with this, we will separate the hash/key management into its a separate service. This way the service can continually generate new keys in the background whenever we begin running low and it will be able to provide each instance of our service with a local cache of keys that are known to be not in use. This will help to eliminate the latency caused by collisions and decrease our response time since we will no longer need to generate the key ourselves. One caveat though is if an instance of the shortening service dies, any keys that were assigned to it will be considered dead as well. In the future we can also look into reclaiming these &quot;lost&quot; keys as well.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Gm2x6CVIXiE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Let us get started!</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://stackoverflow.com/a/1119769">https://stackoverflow.com/a/1119769</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pragmaticdev-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </article>
+      
+
+    </div>
+  </div>
+</div>
+
+  </main>
+  <footer class="footer">
+  <div class="ax-l-i">
+    <nav class="flex items-center justify-center">
+      <a class="ml-3 first:ml-0 text-sm text-gray-600 hover:text-gray-800" href="/posts/">Posts</a>
+      <a class="ml-3 first:ml-0 text-sm text-gray-600 hover:text-gray-800" href="/about/">About</a>
+      <a class="ml-3 first:ml-0 text-sm text-gray-600 hover:text-gray-800" href="/contact/">Contact</a>
+    </nav>
+    <div class="footer-social flex items-center justify-center mt-4">
+      <a class="block mx-3 w-6 h-6 text-raven-700 hover:text-raven-900" target="_blank" rel="noopener nofollow" title="Github" href="https://github.com/pragmaticdev-io"><svg class="fill-current" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M15.998 0C7.164 0 0 7.35 0 16.417 0 23.67 4.584 29.82 10.944 31.994c.8.15 1.092-.356 1.092-.79l-.022-2.792c-4.45.99-5.4-2.202-5.4-2.202-.726-1.896-1.776-2.4-1.776-2.4-1.454-1.018.108-.998.108-.998 1.606.117 2.45 1.693 2.45 1.693 1.428 2.507 3.746 1.784 4.658 1.363.144-1.06.558-1.784 1.016-2.195-3.552-.415-7.288-1.823-7.288-8.113 0-1.792.624-3.258 1.648-4.406-.166-.415-.714-2.085.156-4.344 0 0 1.344-.44 4.4 1.683 1.276-.364 2.644-.546 4.006-.552a14.98 14.98 0 0 1 4.006.554C23.062 6.37 24.404 6.8 24.404 6.8c.872 2.26.324 3.93.16 4.344 1.026 1.148 1.644 2.614 1.644 4.406 0 6.306-3.74 7.694-7.304 8.1.574.507 1.086 1.51 1.086 3.04l-.02 4.503c0 .44.288.95 1.1.788C27.42 29.817 32 23.667 32 16.417 32 7.35 24.836 0 15.998 0z"/></svg></a>
+      <a class="block mx-3 w-6 h-6 text-raven-700 hover:text-raven-900" target="_blank" rel="noopener nofollow" title="LinkedIn" href="https://www.linkedin.com/in/cole-mackenzie"><svg class="fill-current" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M29.692 0H2.308A2.31 2.31 0 0 0 0 2.308v27.384A2.31 2.31 0 0 0 2.308 32h27.384A2.31 2.31 0 0 0 32 29.692V2.308A2.31 2.31 0 0 0 29.692 0zM11.35 24.188H7.454V12.464h3.897v11.723zM9.402 10.863h-.025c-1.308 0-2.153-.9-2.153-2.025 0-1.15.872-2.026 2.205-2.026s2.153.875 2.18 2.026c0 1.125-.846 2.025-2.205 2.025zm16 13.324h-3.896v-6.272c0-1.576-.564-2.65-1.974-2.65-1.076 0-1.717.725-2 1.425-.103.25-.128.6-.128.95v6.547h-3.896V12.464h3.896v1.66c.518-.8 1.444-1.935 3.512-1.935 2.564 0 4.486 1.676 4.486 5.276v6.722z"/></svg></a>
+    </div>
+
+    <div class="footer-copyright text-sm text-center text-gray-500 mt-4">
+      &#169; 2020-2020 PragmaticDev
+    </div>
+
+    <div class="text-sm sm:text-xs text-center text-gray-500 mt-2">
+      Powered by <a href="https://github.com/marketempower/axiom">Axiom</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/bundle.js?v=1589091876"></script>
+<script defer src="/prism.js?v=1589091876"></script>
+</body>
+</html>
