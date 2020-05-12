@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="noodp,noydir">
+  <meta name="pinterest" content="nopin">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/image/brand/favicon.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/image/brand/icon-1-1.png">
+  <link rel="canonical" href="https://blog.pragmaticdev.io/project-setup/">
+  
+<link rel="preload" as="style" href="/bundle.css?v=1589263577" media="all">
+<link rel="stylesheet" href="/bundle.css?v=1589263577" media="all">
+
+<link rel="preload" as="image" href="/image/untidy/project-setup.png">
+
+
+<title>Part 2: Project Setup : PragmaticDev</title>
+
+<meta property="og:title" content="Part 2: Project Setup">
+<meta property="og:site_name" content="PragmaticDev">
+<meta property="og:url" content="https://blog.pragmaticdev.io/project-setup/">
+<link rel="image_src" href="https://blog.pragmaticdev.io/image/untidy/project-setup.png">
+<meta property="og:image" content="https://blog.pragmaticdev.io/image/untidy/project-setup.png">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_us">
+<meta property="og:description" content="Now that we have got the overall design flushed out we now need to configure our development environment before we start coding. Prerequisites  Brew.sh SDK Man Docker  Install Java, Kotlin, and Gradle As of writing this, these are the latest versions for Java 11 and Kotlin.">
+<meta name="description" content="Now that we have got the overall design flushed out we now need to configure our development environment before we start coding. Prerequisites  Brew.sh SDK Man Docker  Install Java, Kotlin, and Gradle As of writing this, these are the latest versions for Java 11 and Kotlin.">
+<meta property="og:updated_time" content="2020-05-11T19:00:00Z">
+<meta property="fb:app_id" content="">
+<meta name="author" content="Cole Mackenzie">
+<meta property="article:author" content="https://cmackenzie1.github.io">
+<meta property="article:published_time" content="2020-05-10T19:00:00Z">
+<meta property="article:modified_time" content="2020-05-11T19:00:00Z">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Part 2: Project Setup",
+  "alternativeHeadline": "Configuring our development environment and creating our application repository, and creating a Cassandra instance",
+  "url": "https://blog.pragmaticdev.io/project-setup/",
+  "image": "https://blog.pragmaticdev.io/image/untidy/project-setup.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.pragmaticdev.io/project-setup/"
+  },
+  "description": "Now that we have got the overall design flushed out we now need to configure our development environment before we start coding. Prerequisites  Brew.sh SDK Man Docker  Install Java, Kotlin, and Gradle As of writing this, these are the latest versions for Java 11 and Kotlin.",
+  "author": {
+    "@type": "Person",
+    "name": "Cole Mackenzie"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "PragmaticDev",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.pragmaticdev.io/image/brand/icon-1-1.png"
+    }
+  },
+  "datePublished": "2020-05-10T19:00:00Z",
+  "dateModified": "2020-05-11T19:00:00Z",
+  "articleBody": "\u003cp\u003eNow that we have got the overall design flushed out we now need to configure our development environment before we start coding.\u003c/p\u003e\n\u003ch2\u003ePrerequisites\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://brew.sh/\"\u003eBrew.sh\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://sdkman.io/\"\u003eSDK Man\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://www.docker.com/\"\u003eDocker\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eInstall Java, Kotlin, and Gradle\u003c/h3\u003e\n\u003cp\u003eAs of writing this, these are the latest versions for Java 11 and Kotlin. You may use any version you like as long as it is supported by Spring and any of the project dependencies.\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e2\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e3\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-cmd\" data-lang=\"cmd\"\u003esdk install java 11.0.7-amzn\nsdk install kotlin 1.3.72\nbrew install gradle\n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003ch3\u003eCreate Spring Boot Project using Spring Initializr\u003csup id=\"fnref:1\"\u003e\u003ca href=\"#fn:1\" class=\"footnote-ref\" role=\"doc-noteref\"\u003e1\u003c/a\u003e\u003c/sup\u003e\u003c/h3\u003e\n\u003cp\u003e\u003cimg src=\"/image/untidy/spring-initializr.png\" alt=\"Spring Initializr\"\u003e\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e2\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-cmd\" data-lang=\"cmd\"\u003eunzip untidy.zip\n\u003cspan style=\"color:#66d9ef\"\u003ecd\u003c/span\u003e untidy\n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003cp\u003eAfter generating the project and unzipping it, you can now open it in your favourite IDE. Mine is IntelliJ.\u003c/p\u003e\n\u003cp\u003eWhen setting up a project, the first thing I do is set up my version control. For this project I am using Git with GitHub.\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 2\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 3\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 4\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 5\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 6\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 7\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 8\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 9\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e10\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e11\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e12\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e13\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-cmd\" data-lang=\"cmd\"\u003e# from project root\ngit init\ngit remote add origin git@github.com:pragmaticdev-io/untidy.git\n\n# Update the .gitignore file to include all the tools we are using\ncurl http://gitignore.io/api/java,linux,macos,python,kotlin,windows,intellij+all,gradle \u0026gt; .gitignore\ngit add .gitignore\n\n\n# First commit\ngit add .\ngit commit -m \u003cspan style=\"color:#e6db74\"\u003e\u0026#34;Initial commit\u0026#34;\u003c/span\u003e\ngit push --set-upstream origin master\n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003cbr\u003e\n\n\n\u003ca class=\"inline-flex items-center rounded font-content-sans font-semibold text-raven-700 bg-raven-100 hover:bg-raven-200 py-2 px-4\" href=\"https://github.com/pragmaticdev-io/untidy\" role=\"button\"\u003e\n  \u003csvg class=\"fill-current h-4 w-auto mr-2\" viewBox=\"0 0 32 32\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\u003e\u003cpath d=\"M15.998 0C7.164 0 0 7.35 0 16.417 0 23.67 4.584 29.82 10.944 31.994c.8.15 1.092-.356 1.092-.79l-.022-2.792c-4.45.99-5.4-2.202-5.4-2.202-.726-1.896-1.776-2.4-1.776-2.4-1.454-1.018.108-.998.108-.998 1.606.117 2.45 1.693 2.45 1.693 1.428 2.507 3.746 1.784 4.658 1.363.144-1.06.558-1.784 1.016-2.195-3.552-.415-7.288-1.823-7.288-8.113 0-1.792.624-3.258 1.648-4.406-.166-.415-.714-2.085.156-4.344 0 0 1.344-.44 4.4 1.683 1.276-.364 2.644-.546 4.006-.552a14.98 14.98 0 0 1 4.006.554C23.062 6.37 24.404 6.8 24.404 6.8c.872 2.26.324 3.93.16 4.344 1.026 1.148 1.644 2.614 1.644 4.406 0 6.306-3.74 7.694-7.304 8.1.574.507 1.086 1.51 1.086 3.04l-.02 4.503c0 .44.288.95 1.1.788C27.42 29.817 32 23.667 32 16.417 32 7.35 24.836 0 15.998 0z\"/\u003e\u003c/svg\u003e\n\n  \u003cspan\u003eUnTidy\u003c/span\u003e\n\u003c/a\u003e\n\n\u003ch3\u003eSetup a Local Cassandra for Development\u003c/h3\u003e\n\u003cp\u003eNow there are several different ways to setup a Cassandra cluster. I will be configuring my local Cassandra instance using Docker. We can do this using Docker Compose and the official \u003ca href=\"https://hub.docker.com/_/cassandra\"\u003eCassandra Image\u003c/a\u003e. We can then specify in our \u003ccode\u003edocker-compose.yml\u003c/code\u003e the following.\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 2\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 3\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 4\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 5\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 6\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 7\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 8\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 9\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e10\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e11\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-docker\" data-lang=\"docker\"\u003eversion: \u003cspan style=\"color:#e6db74\"\u003e\u0026#34;3\u0026#34;\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003eservices:\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003e  cassandra:\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003e    image: cassandra:3\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003e    ports:\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003e    - \u003cspan style=\"color:#e6db74\"\u003e\u0026#34;9160:9160\u0026#34;\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003e    - \u003cspan style=\"color:#e6db74\"\u003e\u0026#34;9042:9042\u0026#34;\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003e    volumes:\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003e    - cassandra-persistence:/var/lib/cassandra\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003evolumes:\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\u003c/span\u003e  cassandra-persistence:\u003cspan style=\"color:#960050;background-color:#1e0010\"\u003e\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003cp\u003eWe can then start it using \u003ccode\u003edocker-compose up\u003c/code\u003e and connect to it using \u003ccode\u003ecqlsh\u003c/code\u003e\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e2\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e3\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e4\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e5\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-cmd\" data-lang=\"cmd\"\u003e\u0026gt; docker run -it --rm --net host cassandra:3 cqlsh\nConnected to Test Cluster at 127.0.0.1:9042.\n[cqlsh 5.0.1 | Cassandra 3.11.6 | CQL spec 3.4.4 | Native protocol v4]\nUse HELP for help.\ncqlsh\u0026gt; DESC KEYSPACES \n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003cp\u003eThis command may seem a bit odd at first, especially if this is your first time working with Docker, so let me break it down.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003edocker\u003c/code\u003e - the docker executable.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003erun\u003c/code\u003e - specifying that we want to run a container.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003e-it\u003c/code\u003e - specifies we want the launched container to be in interactive mode and we want to attach a \u003ccode\u003eTTY\u003c/code\u003e session.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003e--rm\u003c/code\u003e - a quality of life flag that will destroy the launched container on termination.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003e--net host\u003c/code\u003e - set the containers networking to that of the host machine. This way we can connect to other containers through our computer network and not a virtual docker network.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003ecassandra:3\u003c/code\u003e - use the latest image with a Cassandra major version of 3.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003ecqlsh\u003c/code\u003e - the command we want to launch in the container.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eSetup Cassandra for UnitTests\u003c/h3\u003e\n\u003cp\u003eWhile we could use the same Cassandra instance we created above for Unit Testing it will probably cause us more pain than it's worth. By choosing to use our local Cassandra we will run into issues of consistency. The database can be modified during the execution of UnitTests leading to some unexpected errors. Not to mention it makes our code less portable as it will require a local Cassandra to be configured correctly everywhere we want to run our unit tests.\u003c/p\u003e\n\u003cp\u003eTo get around this, we can use an embedded cassandra server. By using an embedded server we have more control over the database and can specify our CQL scripts to run before and after each unit test. Some examples would be for populating test data or recreating a keyspace before the next test is run.\u003c/p\u003e\n\u003cp\u003eTo get started we can add the following \u003ccode\u003edependencies\u003c/code\u003e to our \u003ccode\u003ebuild.gradle.kts\u003c/code\u003e file.\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e2\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e3\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e4\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-kotlin\" data-lang=\"kotlin\"\u003edependencies {\n \u003cspan style=\"color:#75715e\"\u003e// omitted other dependencies for cleanliness\n\u003c/span\u003e\u003cspan style=\"color:#75715e\"\u003e\u003c/span\u003e\ttestImplementation(\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;org.cassandraunit:cassandra-unit-spring:3.11.2.0\u0026#34;\u003c/span\u003e)\n}\n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003cp\u003e\u003ca href=\"https://github.com/jsevellec/cassandra-unit\"\u003eCassandra Unit\u003c/a\u003e will create an embedded cassandra server for our unit if we mark the tests with some annotations. Some of the annotations provided can be seen further below. It is important to note that this embedded server does not start on the default \u003ccode\u003e9042\u003c/code\u003e port so we need to specify which port to use in our test \u003ccode\u003eapplication.properties\u003c/code\u003e file\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-properties\" data-lang=\"properties\"\u003e# src/test/resources/application.properties\nspring.data.cassandra.keyspace-name=unitTest\nspring.data.cassandra.port=9142\n\u003c/code\u003e\u003c/pre\u003e\u003cp\u003eAfter we have completed that, we can then add the following annotations to our \u003ccode\u003esrc/test/kotlin/io/pragmaticdev/untidy/UntidyApplicationTests.kt\u003c/code\u003e to tell spring to load our embedded cassandra before loading the application context.\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 2\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 3\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 4\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 5\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 6\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 7\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 8\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 9\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e10\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-kotlin\" data-lang=\"kotlin\"\u003e@CassandraDataSet(keyspace = \u003cspan style=\"color:#e6db74\"\u003e\u0026#34;unitTest\u0026#34;\u003c/span\u003e, value = [\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;cql/dataset.cql\u0026#34;\u003c/span\u003e])\n@CassandraUnit\n@TestExecutionListeners(value = [CassandraUnitDependencyInjectionTestExecutionListener\u003cspan style=\"color:#f92672\"\u003e::\u003c/span\u003e\u003cspan style=\"color:#66d9ef\"\u003eclass\u003c/span\u003e, DependencyInjectionTestExecutionListener\u003cspan style=\"color:#f92672\"\u003e::\u003c/span\u003e\u003cspan style=\"color:#66d9ef\"\u003eclass\u003c/span\u003e])\n@SpringBootTest\n\u003cspan style=\"color:#66d9ef\"\u003eclass\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003eUntidyApplicationTests\u003c/span\u003e {\n\n    @Test\n    \u003cspan style=\"color:#66d9ef\"\u003efun\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003econtextLoads\u003c/span\u003e() {\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003cp\u003eand then create the \u003ccode\u003ecql/dataset.cql\u003c/code\u003e in our test \u003ccode\u003eresources\u003c/code\u003e folder with the following data\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e2\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e3\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e4\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-cql\" data-lang=\"cql\"\u003e\u003cspan style=\"color:#75715e\"\u003e-- src/test/resources/cql/dataset.cql\n\u003c/span\u003e\u003cspan style=\"color:#75715e\"\u003e\u003c/span\u003e\u003cspan style=\"color:#66d9ef\"\u003eCREATE\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eKEYSPACE\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eIF\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eNOT\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eEXISTS\u003c/span\u003e unitTest\n    \u003cspan style=\"color:#66d9ef\"\u003eWITH\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003ereplication\u003c/span\u003e \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e {\u003cspan style=\"color:#e6db74\"\u003e\u0026#39;class\u0026#39;\u003c/span\u003e: \u003cspan style=\"color:#e6db74\"\u003e\u0026#39;SimpleStrategy\u0026#39;\u003c/span\u003e, \u003cspan style=\"color:#e6db74\"\u003e\u0026#39;replication_factor\u0026#39;\u003c/span\u003e: \u003cspan style=\"color:#e6db74\"\u003e\u0026#39;1\u0026#39;\u003c/span\u003e}\n        \u003cspan style=\"color:#66d9ef\"\u003eAND\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003edurable_writes\u003c/span\u003e \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003etrue\u003c/span\u003e;\n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003ch2\u003eSetup Continuous Integration\u003c/h2\u003e\n\u003cp\u003eFor Continuous Integration I will be using TravisCI.\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e2\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-cmd\" data-lang=\"cmd\"\u003egem install travis\ntravis init\n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003cp\u003eAfter following the prompts, a \u003ccode\u003e.travis.yml\u003c/code\u003e is created in the project root. I customized to use \u003ccode\u003eopenjdk11\u003c/code\u003e and enabled gradle caching to speed up our builds.\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 2\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 3\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 4\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 5\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 6\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 7\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 8\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 9\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e10\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e11\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-yaml\" data-lang=\"yaml\"\u003e\u003cspan style=\"color:#75715e\"\u003e# .travis.yml\u003c/span\u003e\n\u003cspan style=\"color:#66d9ef\"\u003elanguage\u003c/span\u003e: java\n\u003cspan style=\"color:#66d9ef\"\u003ejdk\u003c/span\u003e:\n  - openjdk11\n\u003cspan style=\"color:#66d9ef\"\u003ebefore_cache\u003c/span\u003e:\n  - rm -f  $HOME/.gradle/caches/modules\u003cspan style=\"color:#ae81ff\"\u003e-2\u003c/span\u003e/modules\u003cspan style=\"color:#ae81ff\"\u003e-2.\u003c/span\u003elock\n  - rm -fr $HOME/.gradle/caches/\u003cspan style=\"color:#75715e\"\u003e*/plugin-resolution/\u003c/span\u003e\n\u003cspan style=\"color:#66d9ef\"\u003ecache\u003c/span\u003e:\n  \u003cspan style=\"color:#66d9ef\"\u003edirectories\u003c/span\u003e:\n    - $HOME/.gradle/caches/\n    - $HOME/.gradle/wrapper/\n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003cp\u003eRunning \u003ccode\u003e./gradlew check\u003c/code\u003e should now give us the OK!\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cdiv style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\n\u003ctable style=\"border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\"\u003e\u003ctr\u003e\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 1\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 2\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 3\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 4\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 5\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 6\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 7\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 8\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e 9\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e10\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e11\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e12\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e13\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e14\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e15\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e16\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e17\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e18\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e19\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e20\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e21\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e22\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e23\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e24\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e25\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e26\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e27\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e28\n\u003c/span\u003e\u003cspan style=\"margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\"\u003e29\n\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\n\u003ctd style=\"vertical-align:top;padding:0;margin:0;border:0;;width:100%\"\u003e\n\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2\"\u003e\u003ccode class=\"language-cmd\" data-lang=\"cmd\"\u003e./gradlew check\n\nWelcome to Gradle 6.3!\n\nHere are the highlights of this release:\n - Java 14 support\n - Improved error messages for unexpected failures\n\n\u003cspan style=\"color:#66d9ef\"\u003eFor\u003c/span\u003e more details see https://docs.gradle.org/6.3/release-notes.html\n\n\n\u0026gt; Task :test\nWARNING: An illegal reflective access operation has occurred\nWARNING: Illegal reflective access by org.apache.cassandra.utils.FBUtilities (file:/Users/colemackenzie/.gradle/caches/modules-2/files-2.1/org.apache.cassandra/cassandra-all/3.11.4/73c489c1acbecb534442e3c6af357b449c64b282/cassandra-all-3.11.4.jar) to field java.io.FileDescriptor.fd\nWARNING: Please consider reporting this to the maintainers of org.apache.cassandra.utils.FBUtilities\nWARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations\nWARNING: All illegal access operations will be denied in a future release\n2020-05-11 22:37:53.738  INFO 51169 --- [iceShutdownHook] org.apache.cassandra.hints.HintsService  : Paused hints dispatch\n2020-05-11 22:37:53.738  INFO 51169 --- [iceShutdownHook] o.apache.cassandra.thrift.ThriftServer   : Stop listening to thrift clients\n2020-05-11 22:37:53.743  INFO 51169 --- [iceShutdownHook] org.apache.cassandra.transport.Server    : Stop listening for CQL clients\n2020-05-11 22:37:53.744  INFO 51169 --- [iceShutdownHook] org.apache.cassandra.gms.Gossiper        : Announcing shutdown\n2020-05-11 22:37:53.745  INFO 51169 --- [iceShutdownHook] o.a.cassandra.service.StorageService     : Node /127.0.0.1 state jump to shutdown\n2020-05-11 22:37:55.750  INFO 51169 --- [iceShutdownHook] o.apache.cassandra.net.MessagingService  : Waiting for messaging service to quiesce\n2020-05-11 22:37:55.753  INFO 51169 --- [CEPT-/127.0.0.1] o.apache.cassandra.net.MessagingService  : MessagingService has terminated the accept() thread\n2020-05-11 22:37:55.797  INFO 51169 --- [iceShutdownHook] org.apache.cassandra.hints.HintsService  : Paused hints dispatch\n2020-05-11 22:37:55.798  INFO 51169 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService \u0026#39;applicationTaskExecutor\u0026#39;\n\nBUILD SUCCESSFUL in 14s\n5 actionable tasks: 2 executed, 3 up-to-date\n\u003c/code\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e\n\u003c/div\u003e\n\u003c/div\u003e\u003ch2\u003eWhat's Next?\u003c/h2\u003e\n\u003cp\u003eComing up in the next post we will define our RESTful API using \u003ca href=\"https://www.openapis.org/\"\u003eOpenAPI\u003c/a\u003e. Stay tuned!\u003c/p\u003e\n\u003csection class=\"footnotes\" role=\"doc-endnotes\"\u003e\n\u003chr\u003e\n\u003col\u003e\n\u003cli id=\"fn:1\" role=\"doc-endnote\"\u003e\n\u003cp\u003e\u003ca href=\"https://start.spring.io/#!type=gradle-project\u0026amp;language=kotlin\u0026amp;platformVersion=2.2.7.RELEASE\u0026amp;packaging=jar\u0026amp;jvmVersion=11\u0026amp;groupId=io.pragmaticdev\u0026amp;artifactId=untidy\u0026amp;name=untidy\u0026amp;description=UnTidy%20URL%20Shortening%20Service\u0026amp;packageName=io.pragmaticdev.untidy\u0026amp;dependencies=devtools,lombok,data-cassandra,actuator,web\"\u003eSpring Initializr\u003c/a\u003e configuration. \u003ca href=\"#fnref:1\" class=\"footnote-backref\" role=\"doc-backlink\"\u003e\u0026#x21a9;\u0026#xfe0e;\u003c/a\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003c/section\u003e"
+}
+</script>
+
+<link rel="preload" as="script" href="/bundle.js?v=1589263578">
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://stats.g.doubleclick.net">
+<link rel="preconnect" href="https://www.googleadservices.com">
+<link rel="preload" as="script" href="https://www.googletagmanager.com/gtag/js?id=UA-165842118-1">
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-165842118-1"></script>
+<script>
+  window.dataLayer=window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','UA-165842118-1');
+</script>
+
+</head>
+<body>
+  <header id="nav" class="header">
+  <div class="ax-l-i">
+    <div class="ax-logo">
+      <a class="block" href="/" title="PragmaticDev"><span class="font-semibold text-raven-900">PragmaticDev</span></a>
+    </div>
+    <div class="ax-user">
+      <a class="p-2 w-7 h-7 block text-raven-500 hover:text-gray-800 focus:text-gray-800 focus:outline-none" target="_blank" rel="noopener nofollow" href="https://www.google.com/search?q=site:blog.pragmaticdev.io">
+        <svg class="fill-current" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M2.67 12.804c0-5.6 4.544-10.134 10.133-10.134s10.134 4.544 10.134 10.134-4.544 10.133-10.134 10.133S2.67 18.393 2.67 12.804zm28.943 16.923l-8.868-8.868c4.287-5.3 3.68-13.012-1.378-17.57S8.564-1.066 3.75 3.75s-5.017 12.558-.46 17.618 12.28 5.665 17.57 1.378l8.868 8.868a1.33 1.33 0 0 0 2.231-.597c.123-.46-.008-.952-.345-1.29h0z"/></svg>
+
+      </a>
+      <a class="p-2 block text-sm leading-none text-raven-500 hover:text-gray-800 focus:text-gray-800 focus:outline-none" href="/posts/">
+        Posts
+      </a>
+    </div>
+  </div>
+
+  
+</header>
+
+  <main>
+<div class="default-single">
+  <div class="ax-header ax-l-o">
+    <div class="ax-l-i">
+      <h1 class="post-title font-content-title font-normal leading-tight tracking-default text-40">Part 2: Project Setup</h1>
+      <p class="post-subtitle font-content-sans font-light text-xl text-raven-500 mt-3">Configuring our development environment and creating our application repository, and creating a Cassandra instance</p>
+
+      <div class="ax-meta flex items-center mt-5">
+        <div class="flex-grow min-w-0">
+          <div class="flex items-center">
+  <div class="flex-shrink-0">
+    <img
+    class="w-12 h-12 sm:w-14 sm:h-14 object-cover p-05 rounded-full border border-blue-300"
+    src="/image/author/cole.jpg"
+    alt="Cole Mackenzie">
+  </div>
+  <div class="flex-shrink-0 ml-2 leading-tight font-content-sans">
+    <a class="block text-sm text-raven-800 hover:text-raven-900 hover:underline focus:underline" target="_blank" rel="noopener nofollow" title="Cole Mackenzie" href="https://cmackenzie1.github.io">Cole Mackenzie</a>
+    <time class="text-sm text-raven-500" datetime="2020-05-10T19:00:00Z">May 10, 2020 12:00PM</time>
+  </div>
+</div>
+
+        </div>
+        <div>
+          <div class="flex items-center">
+  <a class="flex-shrink-0 block text-raven-800 hover:text-raven-900" target="_blank" rel="noopener nofollow" title="Share on Twitter" href="https://twitter.com/intent/tweet?text=Part%202%3a%20Project%20Setup%20by%20%40Cole_Mackenzie%20https%3a%2f%2fblog.pragmaticdev.io%2fproject-setup%2f"><svg class="w-6 h-6 fill-current" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M32 6.078c-1.2.522-2.458.868-3.78 1.036 1.36-.812 2.398-2.088 2.886-3.626a13.11 13.11 0 0 1-4.16 1.588C25.742 3.794 24.026 3 22.154 3a6.56 6.56 0 0 0-6.556 6.562c0 .52.044 1.02.152 1.496-5.454-.266-10.28-2.88-13.522-6.862-.566.982-.898 2.106-.898 3.316a6.57 6.57 0 0 0 2.914 5.452 6.48 6.48 0 0 1-2.964-.808v.072c0 3.188 2.274 5.836 5.256 6.446-.534.146-1.116.216-1.72.216-.42 0-.844-.024-1.242-.112.85 2.598 3.262 4.508 6.13 4.57a13.18 13.18 0 0 1-8.134 2.798c-.538 0-1.054-.024-1.57-.1C2.906 27.93 6.35 29 10.064 29c12.072 0 18.672-10 18.672-18.668 0-.3-.01-.57-.024-.848C30.014 8.56 31.108 7.406 32 6.078z"/></svg>
+</a>
+  <a class="ml-3 flex-shrink-0 block text-raven-800 hover:text-raven-900" target="_blank" rel="noopener nofollow" title="Share on Facebook" href="https://www.facebook.com/dialog/share?app_id=&display=page&href=https%3a%2f%2fblog.pragmaticdev.io%2fproject-setup%2f"><svg class="w-6 h-6 fill-current" viewBox="-7 -3.5 39 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M30.234 0H1.765C.8.001 0 .79 0 1.766v28.47C.001 31.2.79 32 1.766 32h15.328V19.625h-4.156V14.78h4.156v-3.564c0-4.134 2.523-6.384 6.21-6.384 1.766 0 3.284.13 3.726.2v4.32h-2.543c-2.006 0-2.394.953-2.394 2.352v3.085h4.797l-.625 4.844h-4.172V32h8.14C31.21 32 32 31.2 32 30.234V1.765C32 .8 31.21 0 30.234 0z"/></svg>
+</a>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ax-feature ax-l-o">
+    <div class="ax-l-i">
+
+<figure>
+<img
+class="mb-2 mx-auto leading-none shadow-xl"
+src="/image/untidy/project-setup.png"
+alt="Part 2: Project Setup">
+</figure>
+
+    </div>
+  </div><div class="ax-content ax-l-o">
+    <div class="ax-l-i">
+      <article class="cdata">
+<p>Now that we have got the overall design flushed out we now need to configure our development environment before we start coding.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li><a href="https://brew.sh/">Brew.sh</a></li>
+<li><a href="https://sdkman.io/">SDK Man</a></li>
+<li><a href="https://www.docker.com/">Docker</a></li>
+</ul>
+<h3>Install Java, Kotlin, and Gradle</h3>
+<p>As of writing this, these are the latest versions for Java 11 and Kotlin. You may use any version you like as long as it is supported by Spring and any of the project dependencies.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cmd" data-lang="cmd">sdk install java 11.0.7-amzn
+sdk install kotlin 1.3.72
+brew install gradle
+</code></pre></td></tr></table>
+</div>
+</div><h3>Create Spring Boot Project using Spring Initializr<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></h3>
+<p><img src="/image/untidy/spring-initializr.png" alt="Spring Initializr"></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cmd" data-lang="cmd">unzip untidy.zip
+<span style="color:#66d9ef">cd</span> untidy
+</code></pre></td></tr></table>
+</div>
+</div><p>After generating the project and unzipping it, you can now open it in your favourite IDE. Mine is IntelliJ.</p>
+<p>When setting up a project, the first thing I do is set up my version control. For this project I am using Git with GitHub.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cmd" data-lang="cmd"># from project root
+git init
+git remote add origin git@github.com:pragmaticdev-io/untidy.git
+
+# Update the .gitignore file to include all the tools we are using
+curl http://gitignore.io/api/java,linux,macos,python,kotlin,windows,intellij+all,gradle &gt; .gitignore
+git add .gitignore
+
+
+# First commit
+git add .
+git commit -m <span style="color:#e6db74">&#34;Initial commit&#34;</span>
+git push --set-upstream origin master
+</code></pre></td></tr></table>
+</div>
+</div><br>
+
+
+<a class="inline-flex items-center rounded font-content-sans font-semibold text-raven-700 bg-raven-100 hover:bg-raven-200 py-2 px-4" href="https://github.com/pragmaticdev-io/untidy" role="button">
+  <svg class="fill-current h-4 w-auto mr-2" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M15.998 0C7.164 0 0 7.35 0 16.417 0 23.67 4.584 29.82 10.944 31.994c.8.15 1.092-.356 1.092-.79l-.022-2.792c-4.45.99-5.4-2.202-5.4-2.202-.726-1.896-1.776-2.4-1.776-2.4-1.454-1.018.108-.998.108-.998 1.606.117 2.45 1.693 2.45 1.693 1.428 2.507 3.746 1.784 4.658 1.363.144-1.06.558-1.784 1.016-2.195-3.552-.415-7.288-1.823-7.288-8.113 0-1.792.624-3.258 1.648-4.406-.166-.415-.714-2.085.156-4.344 0 0 1.344-.44 4.4 1.683 1.276-.364 2.644-.546 4.006-.552a14.98 14.98 0 0 1 4.006.554C23.062 6.37 24.404 6.8 24.404 6.8c.872 2.26.324 3.93.16 4.344 1.026 1.148 1.644 2.614 1.644 4.406 0 6.306-3.74 7.694-7.304 8.1.574.507 1.086 1.51 1.086 3.04l-.02 4.503c0 .44.288.95 1.1.788C27.42 29.817 32 23.667 32 16.417 32 7.35 24.836 0 15.998 0z"/></svg>
+
+  <span>UnTidy</span>
+</a>
+
+<h3>Setup a Local Cassandra for Development</h3>
+<p>Now there are several different ways to setup a Cassandra cluster. I will be configuring my local Cassandra instance using Docker. We can do this using Docker Compose and the official <a href="https://hub.docker.com/_/cassandra">Cassandra Image</a>. We can then specify in our <code>docker-compose.yml</code> the following.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-docker" data-lang="docker">version: <span style="color:#e6db74">&#34;3&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>services:<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  cassandra:<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    image: cassandra:3<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    ports:<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    - <span style="color:#e6db74">&#34;9160:9160&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    - <span style="color:#e6db74">&#34;9042:9042&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    volumes:<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    - cassandra-persistence:/var/lib/cassandra<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>volumes:<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  cassandra-persistence:<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>We can then start it using <code>docker-compose up</code> and connect to it using <code>cqlsh</code></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cmd" data-lang="cmd">&gt; docker run -it --rm --net host cassandra:3 cqlsh
+Connected to Test Cluster at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.11.6 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh&gt; DESC KEYSPACES 
+</code></pre></td></tr></table>
+</div>
+</div><p>This command may seem a bit odd at first, especially if this is your first time working with Docker, so let me break it down.</p>
+<ul>
+<li><code>docker</code> - the docker executable.</li>
+<li><code>run</code> - specifying that we want to run a container.</li>
+<li><code>-it</code> - specifies we want the launched container to be in interactive mode and we want to attach a <code>TTY</code> session.</li>
+<li><code>--rm</code> - a quality of life flag that will destroy the launched container on termination.</li>
+<li><code>--net host</code> - set the containers networking to that of the host machine. This way we can connect to other containers through our computer network and not a virtual docker network.</li>
+<li><code>cassandra:3</code> - use the latest image with a Cassandra major version of 3.</li>
+<li><code>cqlsh</code> - the command we want to launch in the container.</li>
+</ul>
+<h3>Setup Cassandra for UnitTests</h3>
+<p>While we could use the same Cassandra instance we created above for Unit Testing it will probably cause us more pain than it's worth. By choosing to use our local Cassandra we will run into issues of consistency. The database can be modified during the execution of UnitTests leading to some unexpected errors. Not to mention it makes our code less portable as it will require a local Cassandra to be configured correctly everywhere we want to run our unit tests.</p>
+<p>To get around this, we can use an embedded cassandra server. By using an embedded server we have more control over the database and can specify our CQL scripts to run before and after each unit test. Some examples would be for populating test data or recreating a keyspace before the next test is run.</p>
+<p>To get started we can add the following <code>dependencies</code> to our <code>build.gradle.kts</code> file.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-kotlin" data-lang="kotlin">dependencies {
+ <span style="color:#75715e">// omitted other dependencies for cleanliness
+</span><span style="color:#75715e"></span>	testImplementation(<span style="color:#e6db74">&#34;org.cassandraunit:cassandra-unit-spring:3.11.2.0&#34;</span>)
+}
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/jsevellec/cassandra-unit">Cassandra Unit</a> will create an embedded cassandra server for our unit if we mark the tests with some annotations. Some of the annotations provided can be seen further below. It is important to note that this embedded server does not start on the default <code>9042</code> port so we need to specify which port to use in our test <code>application.properties</code> file</p>
+<pre><code class="language-properties" data-lang="properties"># src/test/resources/application.properties
+spring.data.cassandra.keyspace-name=unitTest
+spring.data.cassandra.port=9142
+</code></pre><p>After we have completed that, we can then add the following annotations to our <code>src/test/kotlin/io/pragmaticdev/untidy/UntidyApplicationTests.kt</code> to tell spring to load our embedded cassandra before loading the application context.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-kotlin" data-lang="kotlin">@CassandraDataSet(keyspace = <span style="color:#e6db74">&#34;unitTest&#34;</span>, value = [<span style="color:#e6db74">&#34;cql/dataset.cql&#34;</span>])
+@CassandraUnit
+@TestExecutionListeners(value = [CassandraUnitDependencyInjectionTestExecutionListener<span style="color:#f92672">::</span><span style="color:#66d9ef">class</span>, DependencyInjectionTestExecutionListener<span style="color:#f92672">::</span><span style="color:#66d9ef">class</span>])
+@SpringBootTest
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UntidyApplicationTests</span> {
+
+    @Test
+    <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">contextLoads</span>() {
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>and then create the <code>cql/dataset.cql</code> in our test <code>resources</code> folder with the following data</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cql" data-lang="cql"><span style="color:#75715e">-- src/test/resources/cql/dataset.cql
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">KEYSPACE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> unitTest
+    <span style="color:#66d9ef">WITH</span> <span style="color:#66d9ef">replication</span> <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;class&#39;</span>: <span style="color:#e6db74">&#39;SimpleStrategy&#39;</span>, <span style="color:#e6db74">&#39;replication_factor&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>}
+        <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">durable_writes</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</code></pre></td></tr></table>
+</div>
+</div><h2>Setup Continuous Integration</h2>
+<p>For Continuous Integration I will be using TravisCI.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cmd" data-lang="cmd">gem install travis
+travis init
+</code></pre></td></tr></table>
+</div>
+</div><p>After following the prompts, a <code>.travis.yml</code> is created in the project root. I customized to use <code>openjdk11</code> and enabled gradle caching to speed up our builds.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># .travis.yml</span>
+<span style="color:#66d9ef">language</span>: java
+<span style="color:#66d9ef">jdk</span>:
+  - openjdk11
+<span style="color:#66d9ef">before_cache</span>:
+  - rm -f  $HOME/.gradle/caches/modules<span style="color:#ae81ff">-2</span>/modules<span style="color:#ae81ff">-2.</span>lock
+  - rm -fr $HOME/.gradle/caches/<span style="color:#75715e">*/plugin-resolution/</span>
+<span style="color:#66d9ef">cache</span>:
+  <span style="color:#66d9ef">directories</span>:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+</code></pre></td></tr></table>
+</div>
+</div><p>Running <code>./gradlew check</code> should now give us the OK!</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cmd" data-lang="cmd">./gradlew check
+
+Welcome to Gradle 6.3!
+
+Here are the highlights of this release:
+ - Java 14 support
+ - Improved error messages for unexpected failures
+
+<span style="color:#66d9ef">For</span> more details see https://docs.gradle.org/6.3/release-notes.html
+
+
+&gt; Task :test
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.cassandra.utils.FBUtilities (file:/Users/colemackenzie/.gradle/caches/modules-2/files-2.1/org.apache.cassandra/cassandra-all/3.11.4/73c489c1acbecb534442e3c6af357b449c64b282/cassandra-all-3.11.4.jar) to field java.io.FileDescriptor.fd
+WARNING: Please consider reporting this to the maintainers of org.apache.cassandra.utils.FBUtilities
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-05-11 22:37:53.738  INFO 51169 --- [iceShutdownHook] org.apache.cassandra.hints.HintsService  : Paused hints dispatch
+2020-05-11 22:37:53.738  INFO 51169 --- [iceShutdownHook] o.apache.cassandra.thrift.ThriftServer   : Stop listening to thrift clients
+2020-05-11 22:37:53.743  INFO 51169 --- [iceShutdownHook] org.apache.cassandra.transport.Server    : Stop listening for CQL clients
+2020-05-11 22:37:53.744  INFO 51169 --- [iceShutdownHook] org.apache.cassandra.gms.Gossiper        : Announcing shutdown
+2020-05-11 22:37:53.745  INFO 51169 --- [iceShutdownHook] o.a.cassandra.service.StorageService     : Node /127.0.0.1 state jump to shutdown
+2020-05-11 22:37:55.750  INFO 51169 --- [iceShutdownHook] o.apache.cassandra.net.MessagingService  : Waiting for messaging service to quiesce
+2020-05-11 22:37:55.753  INFO 51169 --- [CEPT-/127.0.0.1] o.apache.cassandra.net.MessagingService  : MessagingService has terminated the accept() thread
+2020-05-11 22:37:55.797  INFO 51169 --- [iceShutdownHook] org.apache.cassandra.hints.HintsService  : Paused hints dispatch
+2020-05-11 22:37:55.798  INFO 51169 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService &#39;applicationTaskExecutor&#39;
+
+BUILD SUCCESSFUL in 14s
+5 actionable tasks: 2 executed, 3 up-to-date
+</code></pre></td></tr></table>
+</div>
+</div><h2>What's Next?</h2>
+<p>Coming up in the next post we will define our RESTful API using <a href="https://www.openapis.org/">OpenAPI</a>. Stay tuned!</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://start.spring.io/#!type=gradle-project&amp;language=kotlin&amp;platformVersion=2.2.7.RELEASE&amp;packaging=jar&amp;jvmVersion=11&amp;groupId=io.pragmaticdev&amp;artifactId=untidy&amp;name=untidy&amp;description=UnTidy%20URL%20Shortening%20Service&amp;packageName=io.pragmaticdev.untidy&amp;dependencies=devtools,lombok,data-cassandra,actuator,web">Spring Initializr</a> configuration. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pragmaticdev-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </article>
+      
+
+    </div>
+  </div>
+</div>
+
+  </main>
+  <footer class="footer">
+  <div class="ax-l-i">
+    <nav class="flex items-center justify-center">
+      <a class="ml-3 first:ml-0 text-sm text-gray-600 hover:text-gray-800" href="/posts/">Posts</a>
+      <a class="ml-3 first:ml-0 text-sm text-gray-600 hover:text-gray-800" href="/about/">About</a>
+      <a class="ml-3 first:ml-0 text-sm text-gray-600 hover:text-gray-800" href="/contact/">Contact</a>
+    </nav>
+    <div class="footer-social flex items-center justify-center mt-4">
+      <a class="block mx-3 w-6 h-6 text-raven-700 hover:text-raven-900" target="_blank" rel="noopener nofollow" title="Github" href="https://github.com/pragmaticdev-io"><svg class="fill-current" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M15.998 0C7.164 0 0 7.35 0 16.417 0 23.67 4.584 29.82 10.944 31.994c.8.15 1.092-.356 1.092-.79l-.022-2.792c-4.45.99-5.4-2.202-5.4-2.202-.726-1.896-1.776-2.4-1.776-2.4-1.454-1.018.108-.998.108-.998 1.606.117 2.45 1.693 2.45 1.693 1.428 2.507 3.746 1.784 4.658 1.363.144-1.06.558-1.784 1.016-2.195-3.552-.415-7.288-1.823-7.288-8.113 0-1.792.624-3.258 1.648-4.406-.166-.415-.714-2.085.156-4.344 0 0 1.344-.44 4.4 1.683 1.276-.364 2.644-.546 4.006-.552a14.98 14.98 0 0 1 4.006.554C23.062 6.37 24.404 6.8 24.404 6.8c.872 2.26.324 3.93.16 4.344 1.026 1.148 1.644 2.614 1.644 4.406 0 6.306-3.74 7.694-7.304 8.1.574.507 1.086 1.51 1.086 3.04l-.02 4.503c0 .44.288.95 1.1.788C27.42 29.817 32 23.667 32 16.417 32 7.35 24.836 0 15.998 0z"/></svg></a>
+      <a class="block mx-3 w-6 h-6 text-raven-700 hover:text-raven-900" target="_blank" rel="noopener nofollow" title="LinkedIn" href="https://www.linkedin.com/in/cole-mackenzie"><svg class="fill-current" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M29.692 0H2.308A2.31 2.31 0 0 0 0 2.308v27.384A2.31 2.31 0 0 0 2.308 32h27.384A2.31 2.31 0 0 0 32 29.692V2.308A2.31 2.31 0 0 0 29.692 0zM11.35 24.188H7.454V12.464h3.897v11.723zM9.402 10.863h-.025c-1.308 0-2.153-.9-2.153-2.025 0-1.15.872-2.026 2.205-2.026s2.153.875 2.18 2.026c0 1.125-.846 2.025-2.205 2.025zm16 13.324h-3.896v-6.272c0-1.576-.564-2.65-1.974-2.65-1.076 0-1.717.725-2 1.425-.103.25-.128.6-.128.95v6.547h-3.896V12.464h3.896v1.66c.518-.8 1.444-1.935 3.512-1.935 2.564 0 4.486 1.676 4.486 5.276v6.722z"/></svg></a>
+    </div>
+
+    <div class="footer-copyright text-sm text-center text-gray-500 mt-4">
+      &#169; 2020-2020 PragmaticDev
+    </div>
+
+    <div class="text-sm sm:text-xs text-center text-gray-500 mt-2">
+      Powered by <a href="https://github.com/marketempower/axiom">Axiom</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/bundle.js?v=1589263578"></script>
+<script defer src="/prism.js?v=1589263578"></script>
+</body>
+</html>
