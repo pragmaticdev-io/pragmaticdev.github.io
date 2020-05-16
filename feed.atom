@@ -9,7 +9,7 @@
   </author>
   <icon>https://blog.pragmaticdev.io/image/brand/icon-1-1.png</icon>
   <logo>https://blog.pragmaticdev.io/image/brand/icon-2-1.png</logo>
-  <updated>2020-05-16T04:44:03Z</updated>
+  <updated>2020-05-16T07:50:51Z</updated>
   <link rel="self" type="application/atom+xml" href="https://blog.pragmaticdev.io/feed.atom" hreflang="en-us"/>
   <link rel="alternate" type="text/html" href="https://blog.pragmaticdev.io/" hreflang="en-us"/>
   <entry>
@@ -262,7 +262,23 @@ cqlsh&gt; DESC KEYSPACES
 <li><code>cqlsh</code> - the command we want to launch in the container.</li>
 </ul>
 <h3>Setup Cassandra for UnitTests</h3>
-<p>While we could use the same Cassandra instance we created above for Unit Testing it will probably cause us more pain than it's worth. By choosing to use our local Cassandra we will run into issues of consistency. The database can be modified during the execution of UnitTests leading to some unexpected errors. Not to mention it makes our code less portable as it will require a local Cassandra to be configured correctly everywhere we want to run our unit tests.</p>
+<hr>
+<h4>Update: May 16, 2020</h4>
+<p>So it looks like the <code>cassandra-unit</code> modules does not work with any Java version after Java 8 (we are using Java 11). 😞
+The current solutions are rollback to Java 8 or use the local Cassandra we created for the unit tests. I opted for the latter because Java 8 is reaching End-of-Life at the end of 2020. To configure our local cassandra for unit tests we need to create a keyspace for them to operate in. I created the following keyspace</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">create keyspace untidy_unit_test with replication = {&#39;class&#39;: &#39;org.apache.cassandra.locator.SimpleStrategy&#39;, &#39;replication_factor&#39;: &#39;1&#39;};
+</code></pre></td></tr></table>
+</div>
+</div><p>We can then update our test <code>application.properties</code> to use the separate namesapce and to auto-create the tables required.</p>
+<pre><code class="language-properties" data-lang="properties">spring.data.cassandra.keyspace-name=untidy_unit_test
+spring.data.cassandra.schema-action=recreate_drop_unused
+</code></pre><hr>
+<p><s> While we could use the same Cassandra instance we created above for Unit Testing it will probably cause us more pain than it's worth. By choosing to use our local Cassandra we will run into issues of consistency. The database can be modified during the execution of UnitTests leading to some unexpected errors. Not to mention it makes our code less portable as it will require a local Cassandra to be configured correctly everywhere we want to run our unit tests.</p>
 <p>To get around this, we can use an embedded cassandra server. By using an embedded server we have more control over the database and can specify our CQL scripts to run before and after each unit test. Some examples would be for populating test data or recreating a keyspace before the next test is run.</p>
 <p>To get started we can add the following <code>dependencies</code> to our <code>build.gradle.kts</code> file.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
@@ -325,7 +341,8 @@ spring.data.cassandra.port=9142
         <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">durable_writes</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
 </code></pre></td></tr></table>
 </div>
-</div><h2>Setup Continuous Integration</h2>
+</div></s>
+<h2>Setup Continuous Integration</h2>
 <p>For Continuous Integration I will be using TravisCI.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -351,10 +368,14 @@ travis init
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># .travis.yml</span>
 <span style="color:#66d9ef">language</span>: java
+<span style="color:#66d9ef">services</span>:
+  - <span style="color:#66d9ef">cassandra # NEW</span>: May <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">2020</span>
 <span style="color:#66d9ef">jdk</span>:
   - openjdk11
 <span style="color:#66d9ef">before_cache</span>:
