@@ -9,9 +9,117 @@
   </author>
   <icon>https://blog.pragmaticdev.io/image/brand/icon-1-1.png</icon>
   <logo>https://blog.pragmaticdev.io/image/brand/icon-2-1.png</logo>
-  <updated>2020-05-12T06:11:31Z</updated>
+  <updated>2020-05-16T04:41:28Z</updated>
   <link rel="self" type="application/atom+xml" href="https://blog.pragmaticdev.io/feed.atom" hreflang="en-us"/>
   <link rel="alternate" type="text/html" href="https://blog.pragmaticdev.io/" hreflang="en-us"/>
+  <entry>
+    <title>Part 3: Defining the Initial API</title><author>
+      <name>Cole Mackenzie</name>
+      <uri>https://cmackenzie1.github.io</uri>
+    </author>
+    <id>https://blog.pragmaticdev.io/api-version-0/</id>
+    <updated>2020-05-15T03:00:00Z</updated>
+    <published>2020-05-15T03:00:00Z</published>
+    <content type="html"><p>Defining the API is key to building a REST-based service since this is what defines the contract between the system and the user. There are several ways to document an API and for this project we will be using the <a href="https://swagger.io/specification/">Open API Specification</a>, formerly known as a Swagger plus regular <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">HTTP Request Syntax</a> for the sake of verbosity.</p>
+<h2>Getting Started</h2>
+<p>All you need to get started is a text editor and a file called <code>openapi.yaml</code>. This file is where we define all of our REST endpoints, supported methods, as well as the inputs and outputs. Our API will use only the <code>application/json</code> content type. The first iteration of our API will have no understanding of users or any type of authentication.</p>
+<h2>Define the URL Shortening API</h2>
+<p>For the first iteration (version <code>0.1.0</code>), we will define the process for creating a shortened URL, describing a shortened URL, and redirecting the user to a shortened URL if it exists.</p>
+<h3>Creating a Tidy URL</h3>
+<p>The first order of business is to define what information we need to create a shorted URL. Since this is the first version of our API, we will start with something that only requires the URL to be shortened as input.</p>
+<p>In plain HTTP notation, we can specify all the information like this</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-http" data-lang="http"><span style="color:#a6e22e">POST</span> /v0/tidylink <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+Content-Type<span style="color:#f92672">:</span> <span style="color:#ae81ff">application/json</span>
+
+{
+  <span style="color:#f92672">&#34;original_url&#34;</span>: <span style="color:#e6db74">&#34;http://example.com&#34;</span>
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>And the request response will look like this</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;NAasHGa&#34;</span>,
+  <span style="color:#f92672">&#34;created_at&#34;</span>: <span style="color:#e6db74">&#34;2020-05-16T03:16:16Z&#34;</span>,
+  <span style="color:#f92672">&#34;expires_at&#34;</span>: <span style="color:#e6db74">&#34;2020-05-16T03:16:16Z&#34;</span>,
+  <span style="color:#f92672">&#34;original_url&#34;</span>: <span style="color:#e6db74">&#34;http://example.com&#34;</span>,
+  <span style="color:#f92672">&#34;tidy_url&#34;</span>: <span style="color:#e6db74">&#34;https://UnTidy.cc/NAasHGa&#34;</span>
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3>Describing a Tidy URL</h3>
+<p>Similarly to the response above, performing the following request will yield the same result.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-http" data-lang="http"><span style="color:#a6e22e">GET</span> /v0/tidylink/NAasHGa <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+Accept<span style="color:#f92672">:</span> <span style="color:#ae81ff">application/json</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;NAasHGa&#34;</span>,
+  <span style="color:#f92672">&#34;created_at&#34;</span>: <span style="color:#e6db74">&#34;2020-05-16T03:16:16Z&#34;</span>,
+  <span style="color:#f92672">&#34;expires_at&#34;</span>: <span style="color:#e6db74">&#34;2020-05-16T03:16:16Z&#34;</span>,
+  <span style="color:#f92672">&#34;original_url&#34;</span>: <span style="color:#e6db74">&#34;http://example.com&#34;</span>,
+  <span style="color:#f92672">&#34;tidy_url&#34;</span>: <span style="color:#e6db74">&#34;https://UnTidy.cc/NAasHGa&#34;</span>
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3>Redirecting to the Original URL</h3>
+<p>Finally, we will introduce how a user can be redirected to the original URL.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-http" data-lang="http"><span style="color:#a6e22e">GET</span> /{id} <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>To which the server will respond with HTTP <code>301</code> status code telling the client where to find the resource. The response will also include the <code>Location</code> header with the value containing the original URL.</p>
+<h2>Summary</h2>
+<p>Phew 😅, that is a lot of information to take in, especially if this is your first time working with a RESTful API or using the HTTP notation for requests. You probably have a lot of questions about what you just saw so lets break it down.</p>
+<p>First, you are probably wondering why the endpoints are prefixed with <code>/v0/tidylink</code>. The reason for this is two-fold. Since our API will be continually evolving, we need a way to specify which version of the API we are using. There are several methods for doing this such as prefixing the URL like I did or providing a custom header <code>x-untidy-api-version: v0</code>. Second, you are probably also wondering why we have <code>tidylink</code> in the URL. The reason for this also comes down to providing a method for evolving our API. A good analogy to this is to think of it as variable scope in programming. If our path didn't have this prefix, we would be operating in the root namespace. This means that our API would lay claim to anything in that namespace, so if we decided to add more endpoints to our API, we would have to be aware of the entire global scope of the endpoints. Now, since this is a small project, this would be fairly effortless but what if we were part of a large distributed team developing this service? Each team would be depended on each other team to ensure they don't accidentally overwrite an endpoint that is in use. Adding in large differences in timezones for the members of your team and now it takes 3 days to communicate that you want to control the <code>/lorax</code> endpoint as well.</p>
+<p>Now as I mentioned above here are the links to the <code>openapi.yaml</code> definition and a &quot;pretty&quot; version of the same information.</p>
+<ul>
+<li><a href="https://github.com/pragmaticdev-io/untidy/blob/d9b0bf78953648521d274f768de0c28e4e75c0ef/openapi.yaml"><code>openapi.yaml</code></a></li>
+<li><a href="https://pragmaticdev-io.github.io/untidy/api/0.1.0/index.html">API Documentation</a></li>
+</ul>
+<p>Next up we will start implementing <code>v0.1.0</code> of the UnTidy API!</p></content>
+  </entry>
   <entry>
     <title>Part 2: Project Setup</title><author>
       <name>Cole Mackenzie</name>
